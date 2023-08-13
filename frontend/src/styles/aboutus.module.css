@@ -1,0 +1,82 @@
+.background{
+    background-image: url("../assets/fernImage.jpg");
+    background-size: cover;
+    min-width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.aboutUsContentTopRow{
+    display: flex;
+    padding-top: 300px;
+    color: white;
+    text-shadow: 1px 1px #000000;
+    justify-content: space-between;
+}
+
+.wildAlliesDescription{
+    display: flex;
+    flex-direction: column;
+    min-width: 30%;
+    border-radius: 20px;
+    max-width: 600px;
+}
+
+
+.orangeContainer{
+    background-color: #ffffff85;
+    padding: 15px;
+}
+
+.aboutUsContentRow{
+    display: flex;
+    padding-top: 100px;
+    color: white;
+    text-shadow: 1px 1px #000000;
+    justify-content: space-between;
+}
+.photos{
+    border-radius: 20px;
+    max-height: 500px;
+}
+
+.aboutUsContentBottomRow{
+    display: flex;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    color: white;
+    text-shadow: 1px 1px #000000;
+    justify-content: space-between;
+}
+
+@media screen and (max-width: 600px) {
+    .aboutUsContentTopRow{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .teamPhoto{
+        float: none;
+        margin-top: 20px;
+        min-width: 100%;
+    }
+    .aboutUsContentRow{
+        padding-top: 20px;
+        padding-bottom: 0;
+        display: flex;
+        flex-direction: column;
+    }
+    .aboutUsContentBottomRow{
+        display: flex;
+        flex-direction: column;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    .photos{
+        margin-top: 20px;
+        margin-bottom: 20px;
+        min-width: 100%;
+        max-width: 100%;
+        max-height: none;
+    }
+}

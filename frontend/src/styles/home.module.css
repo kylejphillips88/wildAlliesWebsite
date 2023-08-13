@@ -1,0 +1,106 @@
+.outerContainer{
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+.mailingList{
+    background-image: url("../assets/campFire2.jpg");
+    background-size: cover;
+    background-position: center;
+    min-width: 100%;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    padding-bottom: 200px;
+}
+
+.mailingList h1{
+    font-weight: 700;
+}
+
+.mailingListForm{
+    max-width: 30%;
+}
+
+@media screen and (max-width: 600px) {
+    .mailingList{
+        padding-bottom: 20px;
+    }
+    .mailingListForm{
+        max-width: 50%;
+    }
+}
+
+.mailingListButton{
+    margin-top: 20px;
+    background-color: #C77729 !important;
+    border-color: #C77729 !important;
+    box-shadow: none !important;
+}
+
+.mailingListButton:hover{
+    background-color:  #643C15 !important;
+    border-color:  #643C15 !important;
+}
+
+.mailingListButton:focus{
+    background-color:  #643C15 !important;
+    border-color:  #643C15 !important;
+}
+
+.video {
+    min-width: 100%;
+    max-width: 100%;
+    pointer-events: none;
+
+}
+
+@media screen and (max-width: 600px) {
+    .video{
+        min-height: 300px;
+        max-height: 300px;
+        min-width: 100%;
+        max-width: none;
+        overflow: hidden;
+    }
+
+}
+
+.connectPopUpLogo{
+    max-width: 100px;
+}
+
+.connectPopUpBox {
+    background-color: whitesmoke;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.connectPopUpMessage {
+    display: flex;
+    flex-direction: column;
+    max-width: 40%;
+}
+
+.connectPopUpForm {
+    display: flex;
+    flex-direction: column;
+    
+}
+.connectPopUpButton {
+    background-color: #354333;
+    border-color: #354333;
+    border-radius: 5px 5px;
+}
+
+.connectPopUpButton:hover {
+    background-color: #1A2119 !important;
+    border-color: #1A2119 !important;
+    color: white;
+}

@@ -1,0 +1,39 @@
+.navbar{
+    min-width: 100%;
+    max-width: 100%;
+    background: #ffffff85;
+    position: absolute;
+    z-index: 2;
+
+}
+
+.navbarLogo{
+    max-width: 200px;
+    margin-left: 10%;
+}
+
+.buttonsLayout{
+    display: flex;
+    margin-left: auto;
+    margin-right: 10%;
+}
+
+.navbarButtons{
+    background-color: #354333;
+    border-color: #354333;
+    border-radius: 20px 5px;
+    margin-left: 20px;
+    box-shadow: none !important;
+}
+
+.navbarButtons:hover{
+    background-color: #1A2119 !important;
+    border-color: #1A2119 !important;
+    color: white;
+}
+
+.navbarButtons:focus{
+    background-color: #1A2119 !important;
+    border-color: #1A2119 !important;
+    color: white;
+}
