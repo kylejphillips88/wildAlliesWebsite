@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(cors({
     credentials: true,
-        origin: "https://wildallies.com.au",
+        origin: "https://localhost:3000",
 }));
 
 export const notion = new Client({
