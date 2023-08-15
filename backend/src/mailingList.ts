@@ -1,7 +1,8 @@
 import express,{ RequestHandler} from "express";
 import env from "./utils/validateEnv";
 import "dotenv/config";
-import {notion} from "../src/server";
+import { notion } from "./server";
+
 
 
 const databaseID = env.NOTION_DATABASE;
