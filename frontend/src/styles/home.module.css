@@ -68,6 +68,9 @@
         max-width: none;
         overflow: hidden;
     }
+    .connectPopUpMessage{
+        font-size: xx-small;
+    }
 
 }
 
@@ -103,4 +106,12 @@
     background-color: #1A2119 !important;
     border-color: #1A2119 !important;
     color: white;
+}
+
+.connectPopUpTitle{
+    font-size: larger;
+}
+
+.connectPopUpText{
+    font-size: medium;
 }

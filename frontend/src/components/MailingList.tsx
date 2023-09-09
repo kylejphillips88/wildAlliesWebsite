@@ -23,11 +23,11 @@ const AddSignUpDetails = ({onDismiss, onSignUpSaved}: AddSignUpDetailsProps) => 
             let signUpResponse: MailingList;
             signUpResponse = await FunctionsApi.fetchMailingList(signUpDetails);
             onSignUpSaved(signUpResponse);
+            onSignUpSuccess();
         } catch (error) {
             console.error(error);
             alert(error);
         }
-        onSignUpSuccess();
     }
 
     async function onSignUpSuccess() {

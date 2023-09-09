@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styles from "../styles/navbar.module.css";
 import { useState } from "react";
 import ConnectPopUp from "./ConnectPopUp";
-import { ConnectPopUpDetails } from "../models/connectPopUp";
+import { MailingList } from "../models/mailingList";
 
 const NavBar = () => {
     const [showConnectPopUp, setShowConnectPopUp] = useState(false);
@@ -11,14 +11,12 @@ const NavBar = () => {
     return (
         <div className={styles.navbarCover}>
         <Navbar className={styles.navbar} expand="lg">
-            <Link to={'/'}>
                 <Navbar.Brand>
                     <img
                     src="/wildAlliesLogo.png" 
                     alt="Wild Allies" 
                     className={styles.navbarLogo}/>
                 </Navbar.Brand>
-            </Link>
             <Navbar.Toggle aria-controls="main-navbar"/>
             <Navbar.Collapse id="main-navbar">
                 <div className={styles.buttonsLayout}>
@@ -26,6 +24,12 @@ const NavBar = () => {
                         <Button
                         className={styles.navbarButtons}>
                             Why
+                        </Button>
+                    </a>
+                    <a className="nav-link js-scroll-trigger" href="#what">
+                        <Button
+                        className={styles.navbarButtons}>
+                            What
                         </Button>
                     </a>
                     <a className="nav-link js-scroll-trigger" href="#how">
@@ -57,7 +61,7 @@ const NavBar = () => {
                 onDismiss={() => {
                     setShowConnectPopUp(false);
                 }}
-                onDetailsSent={(details: ConnectPopUpDetails) => {}}
+                onSignUpSaved={(details: MailingList) => {}}
             />
         }
         </div>

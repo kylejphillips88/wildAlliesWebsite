@@ -1,60 +1,60 @@
 import { Button, Form, Modal } from "react-bootstrap";
 import styles from "../styles/home.module.css";
 import TextInputField from "./TextInputField";
-import { ConnectPopUpDetails } from "../models/connectPopUp";
-import { ConnectRequestDetails } from "../network/functions_api";
+import { MailingListDetails } from "../network/functions_api";
 import * as FunctionsApi from "../network/functions_api";
 import { useForm } from "react-hook-form";
-import ConnectRequestReceived from "./ConnectRequestReceivedModal";
 import { useState } from "react";
+import { MailingList } from "../models/mailingList";
+import SignedUpModal from "./SignedUpModal";
 
-interface ConnectPopUpProps {
+interface AddSignUpDetailsProps {
     onDismiss: () => void,
-    onDetailsSent: (details: ConnectPopUpDetails) => void,
+    onSignUpSaved: (details: MailingList) => void,
 }
 
-const ConnectPopUp = ({onDismiss, onDetailsSent}: ConnectPopUpProps) => {
-    
-    const [showRequestReceivedModal, setShowRequestReceivedModal] = useState(false);
+const AddSignUpDetails = ({onDismiss, onSignUpSaved}: AddSignUpDetailsProps) => {
+    const [showSignedUpModal, setShowSignedUpModal] = useState(false); 
 
-    const {register, handleSubmit, formState : {errors, isSubmitting} } = useForm<ConnectRequestDetails>({});
+    const { register, handleSubmit, formState : {errors, isSubmitting} } = useForm<MailingListDetails>({});
 
-    async function onSubmit(connectDetails: ConnectRequestDetails) {
+    async function onSubmit(signUpDetails: MailingListDetails) {
         try {
-            let connectResponse: ConnectPopUpDetails;
-            connectResponse = await FunctionsApi.fetchConnectRequest(connectDetails);
-            onDetailsSent(connectResponse);    
-            onRequestSent();
+            let signUpResponse: MailingList;
+            signUpResponse = await FunctionsApi.fetchMailingList(signUpDetails);
+            onSignUpSaved(signUpResponse);
+            onSignUpSuccess();
         } catch (error) {
             console.error(error);
+            alert(error);
         }
     }
 
-    async function onRequestSent(){
-        setShowRequestReceivedModal(true);
+    async function onSignUpSuccess() {
+        setShowSignedUpModal(true);
     }
 
     return(
         <div>
         <Modal show onHide={onDismiss} className="modal-lg" id="connectPopUp">
             <Modal.Header closeButton className={styles.connectPopUpBox}>
+            <div className={styles.connectPopUpTitle}><h3>Join Our Mailing List!</h3></div>
             </Modal.Header>
             <Modal.Body className={styles.connectPopUpBox}>
                 <div className={styles.connectPopUpMessage}>
-                    <p>Are you ready to enhance your impact and make a difference to the people you lead, your organisation, your community and the wider world?<br/><br/>Let's talk!</p>
+                    
+                    <div className={styles.connectPopUpText}><p>Be the first to hear about upcoming experiences and events!</p></div>
                     <div>
                         <img src="/wildAlliesLogo.png" 
                         alt="Wild Allies" 
                         className={styles.connectPopUpLogo}
                         />
-                    </div>
-                    <div>
-                        <p>Simon Harris<br/>simon@wildallies.com.au<br/>+61 406 337 399</p>
-                    </div>
-                    </div>
+                    </div>    
+                </div>
                 <div className={styles.connectPopUpForm}>
                     <Form id="connectRequest" onSubmit={handleSubmit(onSubmit)}>
                         <TextInputField
+                            label="Name"
                             name="name"
                             type="text"
                             placeholder="Name"
@@ -63,24 +63,13 @@ const ConnectPopUp = ({onDismiss, onDetailsSent}: ConnectPopUpProps) => {
                             error={errors.name}
                         />
                         <TextInputField
-                            name="company"
-                            type="text"
-                            placeholder="Company"
-                            register={register}
-                        />
-                        <TextInputField
+                            label="Email"
                             name="email"
                             type="email"
                             placeholder="Email"
                             register={register}
                             registerOptions={{ required: "Please enter your email address."}}
-                            error={errors.email}
-                        />
-                        <TextInputField
-                            name="phone"
-                            type="text"
-                            placeholder="Phone Number"
-                            register={register}
+                            error={errors.emailAddress}
                         />
                     </Form>
                     <Button 
@@ -96,11 +85,11 @@ const ConnectPopUp = ({onDismiss, onDetailsSent}: ConnectPopUpProps) => {
             <Modal.Footer className={styles.connectPopUpBox}/>
         </Modal>
         {
-            showRequestReceivedModal &&
-            <ConnectRequestReceived
+            showSignedUpModal &&
+            <SignedUpModal
                 onDismiss={() => {
-                    setShowRequestReceivedModal(false)
-                    onDismiss();
+                    setShowSignedUpModal(false)
+                    window.location.reload();
                 }}
             />
         }
@@ -108,4 +97,4 @@ const ConnectPopUp = ({onDismiss, onDetailsSent}: ConnectPopUpProps) => {
     )
 }
 
-export default ConnectPopUp;
+export default AddSignUpDetails;

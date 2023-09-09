@@ -45,8 +45,9 @@
 }
 
 .footerAcknowledgement{
-    margin: 1%;
+    padding: 1%;
     color: white;
     font-size: 12px;
     position: absolute;
+    background: #354333;
 }

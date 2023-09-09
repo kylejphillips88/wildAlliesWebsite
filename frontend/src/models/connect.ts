@@ -1,5 +1,6 @@
 export interface ConnectDetails {
     name: string,
+    company: string,
     email: string,
-    message: string,
+    phone: string,
 }

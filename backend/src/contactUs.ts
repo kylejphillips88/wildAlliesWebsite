@@ -14,33 +14,6 @@ const config = {
 
 const transporter = nodemailer.createTransport(config);
 
-interface ContactUsBody {
-    name?: string,
-    email?: string,
-    message?: string,
-}
-
-export const contactUs: RequestHandler<unknown, unknown, ContactUsBody, unknown> = async (req, res, next) => {
-    const name = req.body.name;
-    const email = req.body.email;
-    const message = req.body.message;
-    try {
-        if (!name || !email){
-            throw Error("Form missing required parameters.")
-        }
-        const response = await transporter.sendMail({
-            "from": email,
-            "to": "kyle.phillips294@gmail.com",
-            "subject": `Website Connect message received from ${name}`,
-            "text": message
-        });
-        res.status(200).json(response);
-    }
-    catch (error){
-        next(error)
-    }
-}
-
 interface ConnectBody {
     name?: string,
     company?: string,
@@ -59,7 +32,7 @@ export const connectRequest: RequestHandler<unknown, unknown, ConnectBody, unkno
         }
         const response = await transporter.sendMail({
             "from": email,
-            "to": "kyle.phillips294@gmail.com",
+            "to": "jess@wildallies.com.au, simon@wildallies.com.au",
             "subject": `Connect request received`,
             "text": `<p>You have received a connect request from Wild Allies website.<p/>
             <p>Entered details are as follows.</p>
@@ -77,8 +50,6 @@ export const connectRequest: RequestHandler<unknown, unknown, ConnectBody, unkno
 
 
 const router = express.Router();
-
-router.post("/contactus", contactUs);
 
 router.post("/connectrequest", connectRequest);
 

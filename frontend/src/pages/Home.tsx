@@ -17,7 +17,6 @@ function Home(){
         <div>
             <VideoLoop/>
             <Introduction/>
-            <AddSignUpDetails onDismiss={() => {}} onSignUpSaved={(details: MailingList) => {}}/>
             <Why/>
             <What/>
             <How/>

@@ -5,6 +5,7 @@ import { notion } from "./server";
 
 
 
+
 const databaseID = env.NOTION_DATABASE;
 
 interface JoinMailingList {

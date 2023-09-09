@@ -1,5 +1,5 @@
-import { ConnectPopUpDetails } from "../models/connectPopUp";
-import ConnectPopUp from "./ConnectPopUp";
+import { MailingList } from "../models/mailingList";
+import AddSignUpDetails from "./ConnectPopUp";
 import React, { useEffect, useState} from "react";
 
 const ScrollTrigger = () => {
@@ -8,29 +8,24 @@ const ScrollTrigger = () => {
     const [connectPopUpShown, setConnectPopUpShown] = useState(false);
 
     useEffect(() => {
-        const handleScroll = () => {
-            const targetElement = document.getElementById('connect');
-            if (targetElement && !connectPopUpShown) {
-              if (window.scrollY > targetElement.offsetTop - 300) {
-                setShowConnectPopUp(true);
-                setConnectPopUpShown(true);
-              }
-            }
-          };
-        window.addEventListener("scroll", handleScroll);
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-        };
+        if(!connectPopUpShown){
+        const timer = setTimeout(() => {
+            setShowConnectPopUp(true);
+            setConnectPopUpShown(true);
+              }, 5000);
+        return () => clearTimeout(timer);
+        }
     });
+
 
     return(
         <div>
             {showConnectPopUp && 
-            <ConnectPopUp
+            <AddSignUpDetails
                 onDismiss={() => {
                     setShowConnectPopUp(false);
                 }}
-                onDetailsSent={(details: ConnectPopUpDetails) => {}}
+                onSignUpSaved={(details: MailingList) => {}}
             />
             }   
         </div>

@@ -1,9 +1,9 @@
-import { Button, Card, Container, Form } from "react-bootstrap";
+import { Button, Card, Container, Form, Navbar } from "react-bootstrap";
 import styles from "../styles/ourwhy.module.css";
+import styles2 from "../styles/home.module.css";
 import { useState } from "react";
 import MessageSentModal from "./MessageSentModal";
 import { ConnectDetails } from "../models/connect";
-import { ConnectMessageDetails } from "../network/functions_api";
 import * as FunctionsApi from "../network/functions_api";
 import TextInputField from "./TextInputField";
 import { useForm } from "react-hook-form";
@@ -16,12 +16,12 @@ interface AddConnectDetailsProps {
 const Connect = ({onDismiss, onDetailsSent}: AddConnectDetailsProps) => {
     const [showMessageSentModal, setShowMessageSentModal] = useState(false);
 
-    const { register, handleSubmit, formState : {errors, isSubmitting} } = useForm<ConnectMessageDetails>({});
+    const { register, handleSubmit, formState : {errors, isSubmitting} } = useForm<ConnectDetails>({});
 
-    async function onSubmit(connectDetails: ConnectMessageDetails) {
+    async function onSubmit(connectDetails: ConnectDetails) {
         try {
             let connectResponse: ConnectDetails;
-            connectResponse = await FunctionsApi.fetchConnectMessage(connectDetails);
+            connectResponse = await FunctionsApi.fetchConnectRequest(connectDetails);
             onDetailsSent(connectResponse);
         } catch (error) {
             console.error(error);
@@ -35,11 +35,20 @@ const Connect = ({onDismiss, onDetailsSent}: AddConnectDetailsProps) => {
     }
     
     return (
-        <div className={styles.background}>
+        <div id="connect" className={styles.connectBackground}>
+            <Navbar className={styles.sectionHeaders}><h1>Connect</h1><br/></Navbar>
             <Container className={styles.topRow}>
-                <div id="connect" className={styles.titleDescription}> 
-                    <h1>Connect</h1><br/><br/>
-                    <h3>Get in touch if have any questions or you would like Wild Allies to plan your next fundraising event!                        </h3>
+                <div  className={styles.titleDescription}> 
+                    <p>Are you ready to enhance your impact and make a difference to the people you lead, your organisation, your community and the wider world?<br/><br/>Let's talk!</p>
+                    <div>
+                        <img src="/wildAlliesLogo.png" 
+                        alt="Wild Allies" 
+                        className={styles2.connectPopUpLogo}
+                        />
+                    </div>
+                    <div>
+                        <p>Simon Harris<br/>simon@wildallies.com.au<br/>+61 406 337 399</p>
+                    </div>
                 </div>
                 <Card className={styles.contactMessageBox}>
                     <Form id="connectForm" onSubmit={handleSubmit(onSubmit)}>
@@ -53,6 +62,13 @@ const Connect = ({onDismiss, onDetailsSent}: AddConnectDetailsProps) => {
                             error={errors.name}
                         />
                         <TextInputField
+                            name="company"
+                            label="Company"
+                            type="text"
+                            placeholder="Company"
+                            register={register}
+                        />
+                        <TextInputField
                             name="email"
                             label="Email"
                             type="email"
@@ -62,11 +78,10 @@ const Connect = ({onDismiss, onDetailsSent}: AddConnectDetailsProps) => {
                             error={errors.email}
                         />
                         <TextInputField
-                            name="message"
-                            label="Message"
-                            as="textarea"
-                            rows={4}
-                            placeholder="Write your message here..."
+                            name="phone"
+                            label="Phone Number"
+                            type="text"
+                            placeholder="Phone"
                             register={register}
                         />
                     </Form>
